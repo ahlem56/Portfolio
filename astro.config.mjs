@@ -1,12 +1,16 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import preact from "@astrojs/preact";
-// import netlify from "@astrojs/netlify";
 import compress from "astro-compress";
 
-// https://astro.build/config
+// Detect Vercel environment
+const isVercel = process.env.VERCEL === "1";
+
 export default defineConfig({
-  // output: "server",
-  integrations: [preact(), tailwind(), compress()],
-  // adapter: netlify()
+  integrations: [
+    preact(),
+    tailwind(),
+    // Disable astro-compress on Vercel to avoid Linux build failure
+    !isVercel && compress(),
+  ].filter(Boolean),
 });
