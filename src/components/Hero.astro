@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import Avatar_180 from "../Avatar_180.webp";
-import Avatar_250 from "../Avatar_250.webp";
+import AhlemPhoto from "../assets/ahlem.png";
+
 ---
 
 <section
@@ -159,9 +159,14 @@ import Avatar_250 from "../Avatar_250.webp";
         class="Spring_Up flex_center w-[50%] aspect-square rounded-full z-10 overflow-hidden"  
     >
         <!-- Replace Avatar_180 with your image -->
-        <img
-            src="/src/assets/SVGs/ahlem (1).png" 
-        />
+       <Image
+  src={AhlemPhoto}
+  alt="Ahlem Bouchahoua profile picture"
+  width={300}
+  height={300}
+  class="w-full h-full object-cover rounded-full"
+/>
+
     </div>
     <div class="Spring_Up Hero_Trail Trail1">
         <span class="Orbit_Dot"></span>
