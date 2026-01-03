@@ -41,7 +41,7 @@ import MicroservicesIcon from "../assets/Icons/MicroservicesIcon.svg"; // New im
 import LogoSpeedyGo from "../assets/Logos/speedyGo.png";  // Update with actual path to your logo image
 import LogoSmartCruit from "../assets/Logos/smartcruit.png";  // Path to your screenshot image
 import LogoDevTalk from "../assets/Logos/stackClone.png";  // Path to your mockup image
-import Logotechpioneers from "../assets/Logos/techpioneers.png";  // Path to your mockup image
+import Logotechpioneers from "../assets/Logos/techPioneers.png";  // Path to your mockup image
 import Python from "../assets/Icons/python.svg"; // New import for Python
 import smartcruit from "../assets/Logos/smartcruit.png"; // New import for SmartCruit
 import LogoFitness from "../assets/Logos/LogoFitness.png"; // New import for Fitness App
