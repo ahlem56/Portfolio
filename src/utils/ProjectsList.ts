@@ -33,7 +33,7 @@ import pascalIcon from "../assets/Icons/pascalIcon.svg"; // New import for Pasca
 import prometheusIcon from "../assets/Icons/prometheusIcon.svg"; // New import for Prometheus
 import grafanaIcon from "../assets/Icons/grafanaIcon.svg"; // New import for Grafana
 import SonarQubeIcon from "../assets/Icons/sonarqubeIcon.svg"; // New import for SonarQube
-import KeycloakIcon from "../assets/Icons/keycloakIcon.svg"; // New import for Keycloak
+import KeycloakIcon from "../assets/Icons/KeycloakIcon.svg"; // New import for Keycloak
 import HuggingFaceIcon from "../assets/Icons/huggingfaceIcon.svg"; // New import for Hugging Face
 import OpenAIIcon from "../assets/Icons/openAiIcon.svg"; // New import for OpenAI
 import firebase from "../assets/Icons/firebase.svg"; // New import for Firebase
@@ -464,7 +464,7 @@ Special attention was given to security, performance, and user experience.
 
   Link: "",
   Source: "",
-  
+
  Demo: {
     email: "demo@example.com",
     password: "123456"
