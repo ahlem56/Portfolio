@@ -9,5 +9,5 @@ export { default as GmailIcon } from "./Gmail.svg"
 export { default as InstagramIcon } from "./Instagram.svg"
 export { default as LinkedinIcon } from "./Linkedin.svg"
 export { default as TwitterIcon } from "./Twitter.svg"
-export { default as FaceBookIcon } from "./Facebook.svg"
+export { default as FacebookIcon } from "../Icons/Facebook.svg";
 export { default as DiscordIcon } from "./Discord.svg"
