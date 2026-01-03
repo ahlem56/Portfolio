@@ -140,6 +140,12 @@ export const ProjectsList = [
   Link: "", // keep empty if not publicly deployed
   Source: "https://github.com/ahlem56/SmartCruitBackend.git", // keep empty or private repo
 
+
+   Demo: {
+    email: "demo@example.com",
+    password: "123456"
+  },
+
   Tech: [
     TechInfo.SpringBoot,
     TechInfo.Angular,
@@ -217,6 +223,12 @@ Special attention was given to security, performance, and user experience.
   Link: "", // optional demo link
   Source: "", // optional GitHub repo
 
+   Demo: {
+    email: "demo@example.com",
+    password: "123456"
+  },
+
+
   Tech: [
     TechInfo.React,
     TechInfo.Laravel,
@@ -281,6 +293,12 @@ Special attention was given to security, performance, and user experience.
 
   Link: "", // not publicly deployed
   Source: "https://github.com/ahlem56/speedyGoBackend.git", // private academic repo
+
+   Demo: {
+    email: "demo@example.com",
+    password: "123456"
+  },
+
 
   Tech: [
     TechInfo.Angular,
@@ -370,6 +388,12 @@ Special attention was given to security, performance, and user experience.
   Link: "",
   Source: "https://github.com/m2l33k/techPioneers.git",
 
+   Demo: {
+    email: "demo@example.com",
+    password: "123456"
+  },
+
+
   Tech: [
     TechInfo.Symfony,
     TechInfo.PHP,
@@ -440,6 +464,12 @@ Special attention was given to security, performance, and user experience.
 
   Link: "",
   Source: "",
+  
+ Demo: {
+    email: "demo@example.com",
+    password: "123456"
+  },
+
 
   Tech: [
     TechInfo.FlutterFlow,

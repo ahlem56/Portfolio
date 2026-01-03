@@ -2,20 +2,17 @@ import {
     HtmlIcon,
     CssIcon,
     JsIcon,
-    TsIcon,
     ReactIcon,
     NextIcon,
     TailwindIcon,
-    ReactQueryIcon,
-    ReduxIcon,
+
     NodeIcon,
     ExpressIcon,
     MongoIcon,
-    FirebaseIcon,
+
     MysqlIcon,
     PhpIcon,
-    RestApiIcon,
-    PythonIcon,
+        PythonIcon,
     JavaIcon,
     GitIcon,
             // New import
