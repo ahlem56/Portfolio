@@ -123,47 +123,7 @@ if (!project) {
             class="Fade_Up"
             loading="eager"
         />
-        <div class="Fade_Up flex_center flex-col gap-4">
-            {
-                project.Demo && (
-                    <div class="flex items-center flex-col gap-4 w-fit px-4 py-2 bg-LinkBtnGradient rounded-md mt-4 lg:mt-0">
-                        <h3 class="min-w-max my-auto">Demo Credentials</h3>
-
-                        <div class="flex justify-evenly w-full flex-col md:flex-row gap-2 text-[0.8em]">
-                            <div class="flex gap-4 bg-backgroundLite p-2 rounded-md">
-                                <span class="min-w-20 md:w-fit">Email : </span>
-                                <span id="emailContent" class="w-full">
-                                    {project.Demo?.email}
-                                </span>
-
-                                <button
-                                    id="emailCopyBtn"
-                                    class="flex_center relative"
-                                >
-                                    <ClipboardCopyIcon class="emailCopyIcon visible" />
-                                    <CheckIcon class="emailCopyIcon absolute invisible" />
-                                </button>
-                            </div>
-                            <div class="flex gap-4 bg-backgroundLite p-2 rounded-md">
-                                <span class="min-w-20 md:w-fit">
-                                    Password :{" "}
-                                </span>
-                                <span id="passContent" class="w-full">
-                                    {project.Demo?.password}
-                                </span>
-
-                                <button
-                                    id="passCopyBtn"
-                                    class="flex_center relative"
-                                >
-                                    <ClipboardCopyIcon class="passCopyIcon visible" />
-                                    <CheckIcon class="passCopyIcon absolute invisible" />
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                )
-            }
+        
 
             <p class="w-full text-justify text-[1.1em] mt-4 px-4 indent-12">
                 {project.Desc}
