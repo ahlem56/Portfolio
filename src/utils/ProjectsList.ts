@@ -61,6 +61,14 @@ import ElearningMockup from "../assets/Mockup/ElearningMockup.png";
 import DevTalkMockup from "../assets/Mockup/DevTalkMockup.png";
 import SpeedyGoMockup from "../assets/Mockup/SpeedyGoMockup.png";
 import FitnessMockup from "../assets/Mockup/FitnessMockup.png";
+import ItAuditLoginShot from "../assets/Shots/it-audit-img-000.png";
+import ItAuditDashboardShot from "../assets/Shots/it-audit-img-001.png";
+import LangChainIcon from "../assets/Icons/LangChain.png";
+import AzureOpenAIIcon from "../assets/Icons/AzureOpenAI.png";
+import AzureAISearchIcon from "../assets/Icons/AzureAISearch.png";
+import MicrosoftEntraIDIcon from "../assets/Icons/MicrosoftEntraID.png";
+import AzureSQLIcon from "../assets/Icons/AzureSQL.png";
+import FastAPIIcon from "../assets/Icons/FastAPI.png";
 
 const DEFAULT_MOCKUP = smartcruit;
 
@@ -109,6 +117,12 @@ const TechInfo = {
     ScikitLearn : { title: "Scikit-Learn", description: "Machine learning library for Python.", icon: ScikitLearn },
     JWT : { title: "JSON Web Tokens (JWT)", description: "Compact, URL-safe means of representing claims to be transferred between two parties.", icon: Jwt },
     WebSocket : { title: "WebSocket", description: "Protocol for full-duplex communication channels over a single TCP connection.", icon: Websocket },
+    FastAPI: { title: "FastAPI", description: "Python framework for building fast, typed, production-ready REST APIs.", icon: FastAPIIcon },
+    LangChain: { title: "LangChain", description: "Framework used to orchestrate LLM workflows, agents, and RAG pipelines.", icon: LangChainIcon },
+    AzureOpenAI: { title: "Azure OpenAI", description: "Microsoft Azure service used to access advanced language models such as GPT-4o.", icon: AzureOpenAIIcon },
+    AzureAISearch: { title: "Azure AI Search", description: "Cloud search service used for semantic retrieval and mission-scoped RAG context.", icon: AzureAISearchIcon },
+    MicrosoftEntraID: { title: "Microsoft Entra ID", description: "Identity platform used for secure SSO authentication and role-based access control.", icon: MicrosoftEntraIDIcon },
+    AzureSQL: { title: "Azure SQL Database", description: "Managed relational database used to persist missions, observations, reports, and audit events.", icon: AzureSQLIcon },
 };
 
 
@@ -118,6 +132,99 @@ const FeatureList = {
 };
 
 export const ProjectsList = [
+    {
+  Name: "Assistant IA pour l'Audit IT",
+
+  ShortDesc:
+    "AI-assisted IT audit platform that automates observation analysis, priority classification, report generation, and quality control.",
+
+  Desc:
+    "Assistant IA pour l'Audit IT is my final-year engineering project developed during an internship within the Assurance - RAS department of Conseil Audit Formation, a member of the PwC Tunisia network. " +
+    "The platform supports the full lifecycle of an IT audit mission: secure authentication, mission management, Excel observation import, finding validation, AI-assisted priority classification, contextual RAG chat, structured report generation, Quality Gate controls, document export, feedback collection, and tamper-evident audit logging. " +
+    "The solution combines a React and TypeScript frontend, a FastAPI backend, LangChain-based multi-agent orchestration, Azure OpenAI, Azure AI Search, Microsoft Entra ID, Azure SQL Database, and Azure Blob Storage. " +
+    "The prototype was validated on a synthetic BanqueAtlas scenario with 19 successful backend tests and a successful production frontend build.",
+
+  Logo: OpenAIIcon,
+  Shot: [ItAuditDashboardShot],
+  Mockup: ItAuditLoginShot,
+
+  Theme: "#ff5a1f",
+  Status: "completed",
+
+  Link: "",
+  Source: "",
+
+  Demo: {
+    email: "demo@example.com",
+    password: "123456"
+  },
+
+  Tech: [
+    TechInfo.React,
+    TechInfo.TypeScript,
+    TechInfo.TailwindCSS,
+    TechInfo.FastAPI,
+    TechInfo.LangChain,
+    TechInfo.AzureOpenAI,
+    TechInfo.AzureAISearch,
+    TechInfo.MicrosoftEntraID,
+    TechInfo.AzureSQL,
+    TechInfo.Docker
+  ],
+
+  features: [
+    {
+      title: "Secure Mission Workspace",
+      description:
+        "Microsoft Entra ID authentication, role-based access, mission isolation, and dedicated workspaces for IT audit teams."
+    },
+    {
+      title: "Excel Observation Import",
+      description:
+        "Automatic parsing of ITGC observation workbooks with structured storage of mission scope, observations, risks, and audit context."
+    },
+    {
+      title: "AI-Assisted Priority Classification",
+      description:
+        "LLM-powered support for classifying observation priorities with traceable justifications that remain reviewable by the auditor."
+    },
+    {
+      title: "Mission-Scoped RAG Assistant",
+      description:
+        "Contextual chat assistant using Azure AI Search and Azure OpenAI to answer audit questions with source-backed responses."
+    },
+    {
+      title: "Automated Report Generation",
+      description:
+        "Multi-agent workflow for producing structured IT audit report sections from validated observations and mission context."
+    },
+    {
+      title: "Quality Gate Before Export",
+      description:
+        "Pre-export controls that detect missing or incomplete report elements before producing PPTX, PDF, or Word deliverables."
+    },
+    {
+      title: "Tamper-Evident Audit Log",
+      description:
+        "Append-only, hash-chained security journal designed to detect unauthorized changes to sensitive audit events."
+    },
+    {
+      title: "Feedback and Review Studio",
+      description:
+        "Dedicated interface for collecting reviewer feedback, tracking follow-up actions, and improving report quality."
+    }
+  ],
+
+  hideProject: false,
+  LogoSize: 44,
+
+  versions: [
+    {
+      title: "Final Year Project",
+      version: "2025-2026"
+    },
+  ],
+},
     {
   Name: "SmartCruit",
 

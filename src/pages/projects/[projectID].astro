@@ -4,6 +4,13 @@ import { ProjectLayout } from "../../layouts";
 import { CheckIcon, ClipboardCopyIcon, ExternalLinkIcon } from "lucide-preact";
 import { CenterTitle, SectionTitle } from "../../components/UI";
 
+function getProjectSlug(name: string) {
+  return name
+    .toLowerCase()
+    .replace(/['']/g, "")
+    .replaceAll(" ", "-");
+}
+
 // Load projects once
 export async function getStaticPaths() {
   const { ProjectsList } = await import("../../utils/ProjectsList");
@@ -12,7 +19,10 @@ export async function getStaticPaths() {
     .filter((project) => !project.hideProject)
     .map((project) => ({
       params: {
-        projectID: project.Name.replaceAll(" ", "-").toLowerCase(),
+        projectID: project.Name
+          .toLowerCase()
+          .replace(/['']/g, "")
+          .replaceAll(" ", "-"),
       },
     }));
 }
@@ -25,7 +35,7 @@ const { projectID } = Astro.params;
 
 // Find project
 const project = ProjectsList.find(
-  (itm) => itm.Name.replaceAll(" ", "-").toLowerCase() === projectID
+  (itm) => getProjectSlug(itm.Name) === projectID
 );
 
 // Safety guard
