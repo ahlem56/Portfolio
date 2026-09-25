@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Azure Blob Storage">
+  <path d="M64 5 119 36v56l-55 31L9 92V36L64 5Z" fill="#0078D4"/>
+  <path d="M40 33h37l18 18v44H40V33Z" fill="#111827" opacity=".95"/>
+  <path d="M77 33v19h18" fill="none" stroke="#0078D4" stroke-width="7" stroke-linejoin="round"/>
+  <text x="64" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#0078D4">10</text>
+  <text x="64" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#0078D4">01</text>
+</svg>

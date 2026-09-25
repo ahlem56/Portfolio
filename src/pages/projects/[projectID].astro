@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import { ProjectLayout } from "../../layouts";
-import { CheckIcon, ClipboardCopyIcon, ExternalLinkIcon } from "lucide-preact";
 import { CenterTitle, SectionTitle } from "../../components/UI";
 
 function getProjectSlug(name: string) {
@@ -11,7 +10,6 @@ function getProjectSlug(name: string) {
     .replaceAll(" ", "-");
 }
 
-// Load projects once
 export async function getStaticPaths() {
   const { ProjectsList } = await import("../../utils/ProjectsList");
 
@@ -19,199 +17,332 @@ export async function getStaticPaths() {
     .filter((project) => !project.hideProject)
     .map((project) => ({
       params: {
-        projectID: project.Name
-          .toLowerCase()
-          .replace(/['']/g, "")
-          .replaceAll(" ", "-"),
+        projectID: project.Name.toLowerCase().replace(/[\']/g, "").replaceAll(" ", "-"),
       },
     }));
 }
 
 const { ProjectsList } = await import("../../utils/ProjectsList");
-
-
-// Current route param
 const { projectID } = Astro.params;
+const project = ProjectsList.find((itm) => getProjectSlug(itm.Name) === projectID);
 
-// Find project
-const project = ProjectsList.find(
-  (itm) => getProjectSlug(itm.Name) === projectID
-);
-
-// Safety guard
 if (!project) {
   throw new Error(`Project not found: ${projectID}`);
 }
+
+const caseStudy = project.CaseStudy;
+const impact = project.Impact ?? [];
+const gallery = project.Gallery ?? [project.Mockup];
 ---
 
-
 <ProjectLayout
-    title=`${project.Name} | ChiragChrg`
+    title={`${project.Name} | Ahlem Bouchahoua`}
     description={project.ShortDesc}
 >
     <div class="Fade_In flex_center absolute inset-0 w-full h-full z-[-1]">
         <Image
             src={project.Shot[0]}
             alt={`${project.Name}_BG_Image`}
-            class="w-full h-full opacity-50 blur-md p-6 object-cover"
+            class="w-full h-full opacity-45 blur-md p-6 object-cover"
             loading="eager"
         />
         <div class="bg-imgOverlayGradient w-full h-full absolute inset-0"></div>
     </div>
 
-    <div class="flex_center flex-col gap-4 py-4">
+    <section class="flex_center flex-col gap-5 py-6 text-center">
         <Image
             src={project.Logo}
             alt={`${project.Name}_Image`}
-            class="Fade_Up"
-            width={100}
-            height={100}
+            class="Fade_Up rounded-md"
+            width={96}
+            height={96}
             loading="eager"
         />
-        <h1
-            class="Fade_Up font-ubuntu text-[1.6em] md:text-[1.8em] tracking-wider md:tracking-[0.2em] text-center"
-        >
-            {project.Name}
-        </h1>
-
-        <div class="w-full flex_center gap-4">
-            {
-                project?.Tech?.map((tech, index) => {
-                    return (
-                        <Image
-                            src={tech.icon}
-                            alt={`TechIcon_${index}`}
-                            width={28}
-                            height={28}
-                            class="Fade_Stagger"
-                            loading="eager"
-                        />
-                    );
-                })
-            }
-        </div>
-
-        <div class="flex_center gap-4 text-[1em]">
-            <a
-                href={project.Source}
-                target="_blank"
-                rel="author"
-                class="Fade_Stagger flex_center gap-2 bg-LinkBtnGradient px-4 py-2 rounded"
-            >
-                <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 16 16"
-                    color="#fff"
-                    height="24"
-                    width="24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    style="color: var(--heroSocialColor);"
-                >
-                    <path
-                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-                    >
-                    </path>
-                </svg>
-                <span>Source Code</span>
-            </a>
-            
-        </div>
-    </div>
-
-    <h2 class="Fade_Up font-ubuntu text-[1.5em] pt-4 pb-3 w-full">
-        About the project.
-    </h2>
-    <div
-        class="flex justify-center items-center xl:items-start flex-col xl:flex-row gap-4 py-10"
-    >
-        <Image
-            src={project.Mockup}
-            alt={`${project.Name}_Mockup_Image`}
-            width={600}
-            class="Fade_Up"
-            loading="eager"
-        />
-        
-
-            <p class="w-full text-justify text-[1.1em] mt-4 px-4 indent-12">
-                {project.Desc}
+        <div class="max-w-4xl">
+            <p class="Fade_Up uppercase tracking-[0.25em] text-[0.78em] text-secondary">
+                {caseStudy ? "Featured Case Study" : "Project"}
+            </p>
+            <h1 class="Fade_Up font-ubuntu text-[2em] md:text-[2.8em] leading-tight text-center">
+                {project.Name}
+            </h1>
+            <p class="Fade_Up text-[1.08em] mt-3 opacity-95">
+                {project.ShortDesc}
             </p>
         </div>
-    </div>
+
+        <div class="w-full flex_center gap-4 flex-wrap max-w-4xl">
+            {project.Tech.map((tech, index) => (
+                <Image
+                    src={tech.icon}
+                    alt={`TechIcon_${index}`}
+                    width={28}
+                    height={28}
+                    class="Fade_Stagger"
+                    loading="eager"
+                />
+            ))}
+        </div>
+
+        <div class="flex_center gap-4 text-[1em] flex-wrap">
+            {project.Source && (
+                <a
+                    href={project.Source}
+                    target="_blank"
+                    rel="author"
+                    class="Fade_Stagger flex_center gap-2 bg-LinkBtnGradient px-4 py-2 rounded"
+                >
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="22" width="22" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                    <span>Source Code</span>
+                </a>
+            )}
+        </div>
+    </section>
+
+    {impact.length > 0 && (
+        <section class="Fade_Up grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 py-8">
+            {impact.map((item) => (
+                <div class="bg-skillGradientAlt border border-primaryLiteAlt/50 rounded-md p-4 text-center min-h-[120px] flex_center">
+                    <p class="font-ubuntu text-[1.05em]">{item}</p>
+                </div>
+            ))}
+        </section>
+    )}
+
+    <section class="py-8">
+        <h2 class="Fade_Up font-ubuntu text-[1.6em] pb-4 w-full">
+            {caseStudy ? "Product Overview" : "About the project"}
+        </h2>
+        <div class="flex justify-center items-center xl:items-start flex-col xl:flex-row gap-6 py-6">
+            {gallery.length > 1 ? (
+                <div class="Fade_Up project-gallery" aria-label={`${project.Name} interface gallery`}>
+                    {gallery.map((image, index) => (
+                        <div
+                            class="project-gallery-slide"
+                            style={`--slide-index: ${index}; --slide-count: ${gallery.length};`}
+                        >
+                            <Image
+                                src={image}
+                                alt=""
+                                width={760}
+                                class="project-gallery-backdrop"
+                                loading={index === 0 ? "eager" : "lazy"}
+                                aria-hidden="true"
+                            />
+                            <Image
+                                src={image}
+                                alt={`${project.Name}_Interface_${index + 1}`}
+                                width={760}
+                                class="project-gallery-image"
+                                loading={index === 0 ? "eager" : "lazy"}
+                            />
+                        </div>
+                    ))}
+                    <div class="project-gallery-dots" aria-hidden="true">
+                        {gallery.map((_, index) => (
+                            <span style={`--dot-index: ${index}; --slide-count: ${gallery.length};`}></span>
+                        ))}
+                    </div>
+                </div>
+            ) : (
+                <Image
+                    src={project.Mockup}
+                    alt={`${project.Name}_Mockup_Image`}
+                    width={650}
+                    class="Fade_Up rounded-md"
+                    loading="eager"
+                />
+            )}
+
+            <div class="w-full text-[1.05em] mt-2 px-2 flex flex-col gap-4">
+                <p class="Fade_Up text-justify indent-8">{project.Desc}</p>
+
+                {caseStudy && (
+                    <div class="grid grid-cols-1 gap-4 mt-2">
+                        <div class="bg-skillGradientAlt border border-secondaryLiteAlt/40 rounded-md p-4">
+                            <h3 class="font-ubuntu text-[1.15em] mb-2">Problem</h3>
+                            <p>{caseStudy.problem}</p>
+                        </div>
+                        <div class="bg-skillGradientAlt border border-secondaryLiteAlt/40 rounded-md p-4">
+                            <h3 class="font-ubuntu text-[1.15em] mb-2">Solution</h3>
+                            <p>{caseStudy.solution}</p>
+                        </div>
+                        <div class="bg-skillGradientAlt border border-secondaryLiteAlt/40 rounded-md p-4">
+                            <h3 class="font-ubuntu text-[1.15em] mb-2">My Role</h3>
+                            <p>{caseStudy.role}</p>
+                        </div>
+                        <div class="bg-skillGradientAlt border border-primaryLiteAlt/40 rounded-md p-4">
+                            <h3 class="font-ubuntu text-[1.15em] mb-2">Impact</h3>
+                            <p>{caseStudy.impact}</p>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    </section>
+
+    {caseStudy && (
+        <section class="py-8">
+            <CenterTitle title="Architecture" color="primary" />
+            <div class="Fade_Up max-w-6xl mx-auto bg-cardGradient rounded-md border border-primaryLiteAlt/40 p-5 lg:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                    <div class="bg-skillGradientAlt rounded p-4 border border-secondaryLiteAlt/40">
+                        <h3 class="font-ubuntu text-[1.1em]">Frontend</h3>
+                        <p>React + TypeScript + Tailwind</p>
+                    </div>
+                    <div class="bg-skillGradientAlt rounded p-4 border border-secondaryLiteAlt/40">
+                        <h3 class="font-ubuntu text-[1.1em]">Backend & AI</h3>
+                        <p>FastAPI + LangChain agents</p>
+                    </div>
+                    <div class="bg-skillGradientAlt rounded p-4 border border-secondaryLiteAlt/40">
+                        <h3 class="font-ubuntu text-[1.1em]">Cloud Services</h3>
+                        <p>Azure OpenAI, AI Search, SQL, Blob, Entra ID</p>
+                    </div>
+                </div>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {caseStudy.architecture.map((item) => (
+                        <div class="Fade_Stagger rounded border border-primaryLiteAlt/30 bg-background/20 px-4 py-3">
+                            {item}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    )}
 
     <SectionTitle title="Features" color="primary">
-        <div
-            class="grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-y-6 md:gap-x-10 md:mx-4"
-        >
-            {
-                project.features.map((items) => (
-                    <div class="Fade_Up p-2 md:p-4 text-center md:text-start flex flex-col gap-3 border border-primaryLiteAlt sm:border-transparent hover:border-primaryLiteAlt bg-skillGradientAlt rounded-md transition-colors duration-200">
-                        <span class="font-ubuntu text-[1.125em]">
-                            {items.title}
-                        </span>
-                        <p class="md:pl-8 text-center md:text-justify">
-                            {items.description}
-                        </p>
-                    </div>
-                ))
-            }
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-y-6 md:gap-x-10 md:mx-4">
+            {project.features.map((items) => (
+                <div class="Fade_Up p-2 md:p-4 text-center md:text-start flex flex-col gap-3 border border-primaryLiteAlt sm:border-transparent hover:border-primaryLiteAlt bg-skillGradientAlt rounded-md transition-colors duration-200">
+                    <span class="font-ubuntu text-[1.125em]">{items.title}</span>
+                    <p class="md:pl-8 text-center md:text-justify">{items.description}</p>
+                </div>
+            ))}
         </div>
     </SectionTitle>
 
-    <CenterTitle title="Tech Stack" color="secondary" />
-    <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2 mb-96 4xl:mb-[30rem]"
-    >
-        {
-            project.Tech.map((tech) => (
-                <div class="Fade_Stagger flex_center flex-col gap-4 p-4 border border-secondaryLiteAlt sm:border-transparent hover:border-secondaryLiteAlt bg-skillGradientAlt rounded-md transition-colors duration-200">
-                    <div class="flex_center gap-4">
-                        <Image
-                            src={tech.icon}
-                            alt={tech.title}
-                            width={40}
-                            height={40}
-                        />
-                        <span class="text-[1.2em]">{tech.title}</span>
+    {caseStudy && (
+        <section class="py-8">
+            <CenterTitle title="What I Learned" color="secondary" />
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {caseStudy.learnings.map((item) => (
+                    <div class="Fade_Stagger bg-skillGradientAlt border border-secondaryLiteAlt/40 rounded-md p-4">
+                        {item}
                     </div>
-                    <p class="text-center">{tech.description}</p>
+                ))}
+            </div>
+        </section>
+    )}
+
+    <CenterTitle title="Tech Stack" color="secondary" />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2 mb-96 4xl:mb-[30rem]">
+        {project.Tech.map((tech) => (
+            <div class="Fade_Stagger flex_center flex-col gap-4 p-4 border border-secondaryLiteAlt sm:border-transparent hover:border-secondaryLiteAlt bg-skillGradientAlt rounded-md transition-colors duration-200">
+                <div class="flex_center gap-4">
+                    <Image src={tech.icon} alt={tech.title} width={40} height={40} />
+                    <span class="text-[1.2em]">{tech.title}</span>
                 </div>
-            ))
-        }
+                <p class="text-center">{tech.description}</p>
+            </div>
+        ))}
     </div>
 </ProjectLayout>
+<style>
+    .project-gallery {
+        position: relative;
+        width: 100%;
+        max-width: 760px;
+        height: clamp(330px, 42vw, 500px);
+        overflow: hidden;
+        border-radius: 0.45rem;
+        border: 1px solid rgba(148, 156, 196, 0.35);
+        background:
+            radial-gradient(circle at 18% 18%, rgba(160, 150, 210, 0.2), transparent 32%),
+            linear-gradient(135deg, rgba(24, 28, 42, 0.96), rgba(47, 52, 71, 0.94));
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+    }
 
-<script is:inline type="module">
-    const emailCopyBtn = document.getElementById("emailCopyBtn");
-    const passCopyBtn = document.getElementById("passCopyBtn");
-    const emailContent = document.getElementById("emailContent");
-    const passContent = document.getElementById("passContent");
-    const emailCopyIcons = document.querySelectorAll(".emailCopyIcon");
-    const passCopyIcons = document.querySelectorAll(".passCopyIcon");
+    .project-gallery-slide {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        animation-name: projectGalleryFade;
+        animation-duration: calc(var(--slide-count) * 5s);
+        animation-delay: calc(var(--slide-index) * 5s);
+        animation-iteration-count: infinite;
+    }
 
-    emailCopyBtn?.addEventListener("click", () => {
-        navigator.clipboard.writeText(emailContent?.textContent);
+    .project-gallery-slide:first-child {
+        opacity: 1;
+    }
 
-        emailCopyIcons[0].classList.replace("visible", "invisible");
-        emailCopyIcons[1].classList.replace("invisible", "visible");
+    .project-gallery-backdrop,
+    .project-gallery-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+    }
 
-        setTimeout(() => {
-            emailCopyIcons[0].classList.replace("invisible", "visible");
-            emailCopyIcons[1].classList.replace("visible", "invisible");
-        }, 2000);
-    });
+    .project-gallery-backdrop {
+        object-fit: cover;
+        transform: scale(1.08);
+        filter: blur(18px) saturate(1.08) brightness(0.72);
+        opacity: 0.55;
+    }
 
-    passCopyBtn?.addEventListener("click", () => {
-        navigator.clipboard.writeText(passContent?.textContent);
+    .project-gallery-image {
+        object-fit: contain;
+        object-position: center;
+        filter: saturate(1.03) contrast(1.02);
+    }
 
-        passCopyIcons[0].classList.replace("visible", "invisible");
-        passCopyIcons[1].classList.replace("invisible", "visible");
+    .project-gallery-dots {
+        position: absolute;
+        left: 50%;
+        bottom: 14px;
+        display: flex;
+        gap: 8px;
+        transform: translateX(-50%);
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(10, 12, 24, 0.58);
+        backdrop-filter: blur(8px);
+    }
 
-        setTimeout(() => {
-            passCopyIcons[0].classList.replace("invisible", "visible");
-            passCopyIcons[1].classList.replace("visible", "invisible");
-        }, 2000);
-    });
-</script>
+    .project-gallery-dots span {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.35);
+        animation-name: projectGalleryDot;
+        animation-duration: calc(var(--slide-count) * 5s);
+        animation-delay: calc(var(--dot-index) * 5s);
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes projectGalleryFade {
+        0%, 13% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        17%, 100% {
+            opacity: 0;
+            transform: scale(1.012);
+        }
+    }
+
+    @keyframes projectGalleryDot {
+        0%, 13% {
+            background: rgba(255, 255, 255, 0.95);
+            transform: scale(1.18);
+        }
+        17%, 100% {
+            background: rgba(255, 255, 255, 0.35);
+            transform: scale(1);
+        }
+    }
+</style>

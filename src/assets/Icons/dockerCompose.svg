@@ -1,0 +1,24 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M325 36c24 0 44 19 44 43 0 12-5 23-13 31l-22 23 54 22 56-27c21-10 47-1 57 21 10 21 1 46-20 57l-61 29v70l52 28c21 11 29 37 18 58-11 20-37 28-58 17l-48-26-55 38 4 39c2 24-15 45-39 48-24 2-46-15-48-39l-3-31-78-2-30 35c-15 18-42 20-60 5s-21-42-5-60l38-44-22-63-46 3c-24 2-44-16-46-40-1-24 17-44 40-46l44-3 35-62-30-35c-15-18-13-45 5-60s45-13 60 5l26 31 70-10 31-36c8-10 20-16 33-16Z" fill="#B8C7D8" stroke="#202020" stroke-width="8" stroke-linejoin="round"/>
+  <ellipse cx="225" cy="265" rx="121" ry="141" fill="#B8C7D8" stroke="#202020" stroke-width="8"/>
+  <ellipse cx="175" cy="225" rx="25" ry="18" transform="rotate(-37 175 225)" fill="#9EB5CD"/>
+  <ellipse cx="126" cy="260" rx="26" ry="41" transform="rotate(38 126 260)" fill="#9EB5CD" opacity=".7"/>
+  <circle cx="205" cy="318" r="22" fill="#fff" stroke="#202020" stroke-width="5"/>
+  <circle cx="259" cy="313" r="22" fill="#fff" stroke="#202020" stroke-width="5"/>
+  <circle cx="213" cy="309" r="6" fill="#202020"/>
+  <circle cx="249" cy="305" r="6" fill="#202020"/>
+  <g stroke="#202020" stroke-width="5" stroke-linejoin="round">
+    <path d="M66 244 115 226 159 249 107 271 66 244Z" fill="#35BDF2"/>
+    <path d="M107 271 159 249 159 303 107 327V271Z" fill="#147EAE"/>
+    <path d="M66 244 107 271 107 327 66 297V244Z" fill="#1DA7DE"/>
+    <path d="M355 92 416 63 477 96 413 128 355 92Z" fill="#35BDF2"/>
+    <path d="M413 128 477 96 470 164 409 195 413 128Z" fill="#147EAE"/>
+    <path d="M355 92 413 128 409 195 350 158 355 92Z" fill="#1DA7DE"/>
+    <path d="M356 267 416 237 475 269 412 301 356 267Z" fill="#35BDF2"/>
+    <path d="M412 301 475 269 471 331 411 364 412 301Z" fill="#147EAE"/>
+    <path d="M356 267 412 301 411 364 354 330 356 267Z" fill="#1DA7DE"/>
+    <path d="M235 420 292 394 348 424 289 454 235 420Z" fill="#35BDF2"/>
+    <path d="M289 454 348 424 348 477 290 507 289 454Z" fill="#147EAE"/>
+    <path d="M235 420 289 454 290 507 236 475 235 420Z" fill="#1DA7DE"/>
+  </g>
+</svg>

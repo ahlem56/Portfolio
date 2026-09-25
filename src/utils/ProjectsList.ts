@@ -45,6 +45,7 @@ import Logotechpioneers from "../assets/Logos/techPioneers.png";  // Path to you
 import Python from "../assets/Icons/python.svg"; // New import for Python
 import smartcruit from "../assets/Logos/smartcruit.png"; // New import for SmartCruit
 import LogoFitness from "../assets/Logos/LogoFitness.png"; // New import for Fitness App
+import PwcLogo from "../assets/Logos/pwcLogo.png";
 import SentenceTransformers from "../assets/Icons/SentenceTransformers.png"; // New import for Sentence Transformers
 import Spacy from "../assets/Icons/Spacy.png"; // New import for spaCy
 import ScikitLearn from "../assets/Icons/ScikitLearn.png"; // New import for Scikit-Learn
@@ -63,12 +64,22 @@ import SpeedyGoMockup from "../assets/Mockup/SpeedyGoMockup.png";
 import FitnessMockup from "../assets/Mockup/FitnessMockup.png";
 import ItAuditLoginShot from "../assets/Shots/it-audit-img-000.png";
 import ItAuditDashboardShot from "../assets/Shots/it-audit-img-001.png";
+import ItAuditChatbotShot from "../assets/Shots/it-audit-chatbot.png";
+import ItAuditReportReviewShot from "../assets/Shots/it-audit-report-review.png";
+import ItAuditObservationsShot from "../assets/Shots/it-audit-observations.png";
+import ItAuditMissionsShot from "../assets/Shots/it-audit-missions.png";
 import LangChainIcon from "../assets/Icons/LangChain.png";
+import AzureIcon from "../assets/Icons/azure.svg";
 import AzureOpenAIIcon from "../assets/Icons/AzureOpenAI.png";
+import AzureBlobStorageIcon from "../assets/Icons/azureBlobStorage.svg";
+import AzureContainerAppsIcon from "../assets/Icons/azureContainerApps.svg";
 import AzureAISearchIcon from "../assets/Icons/AzureAISearch.png";
 import MicrosoftEntraIDIcon from "../assets/Icons/MicrosoftEntraID.png";
 import AzureSQLIcon from "../assets/Icons/AzureSQL.png";
 import FastAPIIcon from "../assets/Icons/FastAPI.png";
+import NginxIcon from "../assets/Icons/nginx.svg";
+import MicrosoftGraphIcon from "../assets/Icons/microsoftGraph.svg";
+import DockerComposeIcon from "../assets/Icons/dockerCompose.svg";
 
 const DEFAULT_MOCKUP = smartcruit;
 
@@ -123,6 +134,12 @@ const TechInfo = {
     AzureAISearch: { title: "Azure AI Search", description: "Cloud search service used for semantic retrieval and mission-scoped RAG context.", icon: AzureAISearchIcon },
     MicrosoftEntraID: { title: "Microsoft Entra ID", description: "Identity platform used for secure SSO authentication and role-based access control.", icon: MicrosoftEntraIDIcon },
     AzureSQL: { title: "Azure SQL Database", description: "Managed relational database used to persist missions, observations, reports, and audit events.", icon: AzureSQLIcon },
+    Azure: { title: "Microsoft Azure", description: "Cloud platform used for AI, search, identity, storage, database, and hosting services.", icon: AzureIcon },
+    AzureBlobStorage: { title: "Azure Blob Storage", description: "Object storage used for Excel imports, generated reports, exports, and RAG documents.", icon: AzureBlobStorageIcon },
+    AzureContainerApps: { title: "Azure Container Apps", description: "Serverless container hosting service prepared for cloud deployment.", icon: AzureContainerAppsIcon },
+    MicrosoftGraph: { title: "Microsoft Graph", description: "Microsoft API used for OneDrive and SharePoint file integration after user authorization.", icon: MicrosoftGraphIcon },
+    Nginx: { title: "Nginx", description: "Web server used to serve the React build and route API calls to the FastAPI backend.", icon: NginxIcon },
+    DockerCompose: { title: "Docker Compose", description: "Tool used to orchestrate the frontend and backend containers locally.", icon: DockerComposeIcon },
 };
 
 
@@ -133,7 +150,7 @@ const FeatureList = {
 
 export const ProjectsList = [
     {
-  Name: "Assistant IA pour l'Audit IT",
+  Name: "AI-assisted IT audit platform",
 
   ShortDesc:
     "AI-assisted IT audit platform that automates observation analysis, priority classification, report generation, and quality control.",
@@ -142,34 +159,84 @@ export const ProjectsList = [
     "Assistant IA pour l'Audit IT is my final-year engineering project developed during an internship within the Assurance - RAS department of Conseil Audit Formation, a member of the PwC Tunisia network. " +
     "The platform supports the full lifecycle of an IT audit mission: secure authentication, mission management, Excel observation import, finding validation, AI-assisted priority classification, contextual RAG chat, structured report generation, Quality Gate controls, document export, feedback collection, and tamper-evident audit logging. " +
     "The solution combines a React and TypeScript frontend, a FastAPI backend, LangChain-based multi-agent orchestration, Azure OpenAI, Azure AI Search, Microsoft Entra ID, Azure SQL Database, and Azure Blob Storage. " +
-    "The prototype was validated on a synthetic BanqueAtlas scenario with 19 successful backend tests and a successful production frontend build.",
+    "The validated prototype reduced final report generation from 2 days to 2 minutes and passed 19 backend tests plus a production frontend build.",
 
-  Logo: OpenAIIcon,
-  Shot: [ItAuditDashboardShot],
-  Mockup: ItAuditLoginShot,
+  Logo: PwcLogo,
+  Shot: [ItAuditLoginShot],
+  Mockup: ItAuditDashboardShot,
+  Gallery: [
+    ItAuditLoginShot,
+    ItAuditChatbotShot,
+    ItAuditMissionsShot,
+    ItAuditReportReviewShot,
+    ItAuditObservationsShot,
+    ItAuditDashboardShot,
+  ],
 
   Theme: "#ff5a1f",
   Status: "completed",
 
   Link: "",
-  Source: "",
+  Source: "https://github.com/ahlem56/Audit-It-AI-Assistant",
 
   Demo: {
     email: "demo@example.com",
     password: "123456"
   },
 
+  Impact: [
+    "Reduced final report generation from 2 days to 2 minutes",
+    "Built a mission-scoped RAG assistant for IT audit questions",
+    "Designed secure authentication with Microsoft Entra ID",
+    "Dockerized frontend and backend for reproducible deployment",
+  ],
+
+  CaseStudy: {
+    problem:
+      "IT audit report preparation is time-consuming, repetitive, and sensitive to missing observations, inconsistent wording, and manual quality checks.",
+    solution:
+      "I designed and developed a secure AI-assisted platform that centralizes mission setup, Excel observation import, finding analysis, contextual RAG chat, automated report generation, export workflows, feedback, and quality controls.",
+    role:
+      "I worked across the full product: frontend UI, FastAPI backend, database models, LangChain orchestration, Azure service integration, authentication flow, Docker setup, and validation tests.",
+    impact:
+      "The platform reduced final report generation from 2 days to 2 minutes in the validated prototype scenario while keeping auditors in control of review and validation decisions.",
+    architecture: [
+      "React + TypeScript interface",
+      "FastAPI backend services",
+      "LangChain multi-agent workflow",
+      "Azure OpenAI GPT-4o for generation and reasoning",
+      "Azure AI Search for RAG retrieval",
+      "Azure SQL Database for mission data",
+      "Azure Blob Storage for files and exports",
+      "Microsoft Entra ID for OAuth 2.0 authentication",
+      "Docker Compose and Nginx for local orchestration and delivery",
+    ],
+    learnings: [
+      "Designing AI workflows that remain auditable and reviewable",
+      "Connecting RAG retrieval with real business documents and mission context",
+      "Building secure full-stack features around authentication, exports, and audit logs",
+      "Packaging a multi-service web platform with Docker and cloud-ready Azure services",
+    ],
+  },
   Tech: [
     TechInfo.React,
     TechInfo.TypeScript,
+    TechInfo.Vite,
     TechInfo.TailwindCSS,
+    TechInfo.Python,
     TechInfo.FastAPI,
     TechInfo.LangChain,
+    TechInfo.Azure,
     TechInfo.AzureOpenAI,
     TechInfo.AzureAISearch,
-    TechInfo.MicrosoftEntraID,
+    TechInfo.AzureBlobStorage,
     TechInfo.AzureSQL,
-    TechInfo.Docker
+    TechInfo.AzureContainerApps,
+    TechInfo.MicrosoftEntraID,
+    TechInfo.MicrosoftGraph,
+    TechInfo.Docker,
+    TechInfo.DockerCompose,
+    TechInfo.Nginx
   ],
 
   features: [
@@ -624,4 +691,11 @@ Special attention was given to security, performance, and user experience.
 }
 ,
 ];
+
+
+
+
+
+
+
 

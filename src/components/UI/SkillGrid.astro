@@ -12,25 +12,26 @@ type Props = {
 const { stack }: Props = Astro.props;
 ---
 
-<div class="Fade_Up grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+<div class="Fade_Up flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
     {
         stack.map((obj) => (
             <a
                 href={obj.link}
                 title={obj.name}
-                class="Fade_Stagger flex_center flex-col gap-2 min-w-24 aspect-square rounded-lg bg-skillGradient"
+                class="Fade_Stagger flex_center flex-col gap-2 w-[120px] md:w-[126px] aspect-square rounded-lg bg-skillGradient px-2 text-center"
                 target="_blank"
                 rel="noreferrer"
             >
-                <div class="flex_center min-h-[35px] aspect-square">
+                <div class="flex_center h-[38px] w-[38px]">
                     <Image
                         src={obj.icon}
                         alt={obj.name.replaceAll(" ", "_") + "_Icon"}
                         width={35}
                         height={35}
+                        class="max-h-[35px] max-w-[35px] object-contain"
                     />
                 </div>
-                <span class="text-[0.9em]">{obj.name}</span>
+                <span class="text-[0.86em] leading-tight break-words">{obj.name}</span>
             </a>
         ))
     }

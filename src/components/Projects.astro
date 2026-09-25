@@ -1,9 +1,8 @@
 ---
-import { ExternalLinkIcon, WrenchIcon } from "lucide-preact";
+import { WrenchIcon } from "lucide-preact";
 import { SectionTitle } from "./UI";
 import { Image } from "astro:assets";
 
-// Lazy loading ProjectInfo
 const ProjectInfo = import("../utils/ProjectsList");
 const { ProjectsList } = await ProjectInfo;
 
@@ -12,6 +11,10 @@ const getProjectSlug = (name: string) =>
         .toLowerCase()
         .replace(/['']/g, "")
         .replaceAll(" ", "-");
+
+const visibleProjects = ProjectsList?.filter((project) => !project?.hideProject) ?? [];
+const featuredProject = visibleProjects[0];
+const otherProjects = visibleProjects.slice(1);
 ---
 
 <section
@@ -19,77 +22,135 @@ const getProjectSlug = (name: string) =>
     class="w-full min-h-screen px-6 py-4 pt-14 bg-background"
 >
     <SectionTitle title="My Projects" color="secondary">
+        {featuredProject && (
+            <div class="Fade_Up max-w-6xl mx-auto mb-12 rounded-md overflow-hidden bg-cardGradient border border-secondaryLiteAlt/40">
+                <div class="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-0">
+                    <a
+                        href={`/projects/${getProjectSlug(featuredProject.Name)}`}
+                        class="relative block min-h-[280px] lg:min-h-[430px] overflow-hidden"
+                    >
+                        <Image
+                            src={featuredProject.Shot[0]}
+                            alt={`${featuredProject.Name} screenshot`}
+                            class="absolute inset-0 w-full h-full object-cover opacity-80"
+                            loading="lazy"
+                        />
+                        <div class="absolute inset-0 bg-imgOverlayGradient"></div>
+                    </a>
+
+                    <div class="p-6 lg:p-8 flex flex-col justify-center gap-5">
+                        <div class="flex items-center gap-3">
+                            <Image
+                                src={featuredProject.Logo}
+                                alt={`${featuredProject.Name} logo`}
+                                width={44}
+                                height={44}
+                                class="rounded-md bg-white/5"
+                                loading="lazy"
+                            />
+                            <div>
+                                <p class="uppercase tracking-[0.25em] text-[0.75em] text-secondary">Featured Project</p>
+                                <h3 class="font-ubuntu text-[1.8em] leading-tight">{featuredProject.Name}</h3>
+                            </div>
+                        </div>
+
+                        <p class="text-[1.05em] leading-relaxed">
+                            Secure AI platform developed during my PFE internship at PwC Tunisia's RAS department to automate IT audit observation analysis, RAG-based assistance, report generation, and quality control.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
+                            <div class="rounded bg-skillGradient p-3 border border-primaryLiteAlt/40">
+                                <strong class="block font-ubuntu text-[1.15em]">2 days -> 2 min</strong>
+                                <span class="text-[0.82em] opacity-90">report generation</span>
+                            </div>
+                            <div class="rounded bg-skillGradient p-3 border border-primaryLiteAlt/40">
+                                <strong class="block font-ubuntu text-[1.15em]">RAG assistant</strong>
+                                <span class="text-[0.82em] opacity-90">mission-scoped answers</span>
+                            </div>
+                            <div class="rounded bg-skillGradient p-3 border border-primaryLiteAlt/40">
+                                <strong class="block font-ubuntu text-[1.15em]">Azure + Docker</strong>
+                                <span class="text-[0.82em] opacity-90">cloud-ready stack</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-3">
+                            <a href={`/projects/${getProjectSlug(featuredProject.Name)}`} class="bg-LinkBtnGradient px-4 py-2 rounded">
+                                View Case Study
+                            </a>
+                            {featuredProject.Source && (
+                                <a href={featuredProject.Source} target="_blank" rel="noreferrer" class="px-4 py-2 rounded border border-secondaryLiteAlt">
+                                    Source Code
+                                </a>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )}
+
         <div
             class="Fade_Up relative w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:px-12 pb-6"
         >
             {
-                ProjectsList?.map((project) => {
-                    if (project?.hideProject) return;
-
+                otherProjects.map((project) => {
                     return (
                         <div class="Project_Stagger Card_Main w-full h-fit flex_center flex-col bg-cardGradient overflow-hidden rounded-[0.4em] mt-3 opacity-0">
                             <a
                                 href={`/projects/${getProjectSlug(project?.Name)}`}
                                 class="Projects_Preview w-full relative rounded-[0.4em]"
                             >
-                             <div class="relative w-full h-[220px] overflow-hidden">
-  <Image
-    src={project.Shot[0]}
-    alt={`Project_ScreenShot_${project.Name}`}
-    class="absolute inset-0 w-full h-full object-cover opacity-50 transition-opacity"
-    loading="lazy"
-  />
-</div>
-
-
-                               
+                                <div class="relative w-full h-[220px] overflow-hidden">
+                                    <Image
+                                        src={project.Shot[0]}
+                                        alt={`Project_ScreenShot_${project.Name}`}
+                                        class="absolute inset-0 w-full h-full object-cover opacity-55 transition-opacity"
+                                        loading="lazy"
+                                    />
+                                </div>
                             </a>
                             <div class="w-full text-[0.95em] px-4">
-                               <div class="flex justify-between items-center gap-4">
-  <div class="flex items-center gap-3">
-    <Image
-      src={project.Logo}
-      alt={`Project_Logo_${project.Name}`}
-      width={32}
-      height={32}
-      class="rounded-md"
-      loading="lazy"
-    />
+                                <div class="flex justify-between items-center gap-4">
+                                    <div class="flex items-center gap-3">
+                                        <Image
+                                            src={project.Logo}
+                                            alt={`Project_Logo_${project.Name}`}
+                                            width={32}
+                                            height={32}
+                                            class="rounded-md"
+                                            loading="lazy"
+                                        />
 
-    <h3 class="font-ubuntu text-[1.4em]">
-      {project.Name}
-    </h3>
-  </div>
+                                        <h3 class="font-ubuntu text-[1.4em]">
+                                            {project.Name}
+                                        </h3>
+                                    </div>
 
                                     <div class="flex">
                                         {project.Status === "development" && (
                                             <div class="flex_center gap-2 px-1 py-0.5 text-orange-400">
                                                 <WrenchIcon size={16} />
-
-                                                <span class="text-[0.8em]">
-                                                    Under Development
-                                                </span>
+                                                <span class="text-[0.8em]">Under Development</span>
                                             </div>
                                         )}
-
-                                    
                                     </div>
                                 </div>
-                                <p class="text-center">{project.ShortDesc}</p>
+                                <p class="text-center min-h-[72px] flex_center">{project.ShortDesc}</p>
 
-                                <div class="w-full flex_center gap-4 py-3">
-                                    {project.Tech.map((tech) => {
+                                <div class="w-full flex_center gap-4 py-3 flex-wrap">
+                                    {project.Tech.slice(0, 6).map((tech) => {
                                         return (
                                             <img
-  src={tech.icon.src ?? tech.icon}
-  alt={`TechIcon ${tech.title}`}
-  width="22"
-  height="22"
-  loading="lazy"
-/>
-
+                                                src={tech.icon.src ?? tech.icon}
+                                                alt={`TechIcon ${tech.title}`}
+                                                width="22"
+                                                height="22"
+                                                loading="lazy"
+                                            />
                                         );
                                     })}
+                                    {project.Tech.length > 6 && (
+                                        <span class="text-[0.75em] opacity-80">+{project.Tech.length - 6}</span>
+                                    )}
                                 </div>
                             </div>
                         </div>

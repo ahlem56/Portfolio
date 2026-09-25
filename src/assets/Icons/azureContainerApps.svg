@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Azure Container Apps">
+  <path d="M65 7 22 31v49l43 25 42-25V31L65 7Z" fill="#7A35D8"/>
+  <path d="M16 43 0 47v34l16 5V43Z" fill="#9F76EC"/>
+  <path d="M65 7v98l42-25V31L65 7Z" fill="#6E2BD4"/>
+  <path d="M31 40 65 34l31 16-31 15-34-25Z" fill="#A37AF0"/>
+  <path d="M72 53 128 68v34l-56-17V53Z" fill="#7A35D8"/>
+  <path d="M85 17a53 53 0 0 1 33 29M43 111a53 53 0 0 1-33-29M108 100a53 53 0 0 1-44 20M20 28A53 53 0 0 1 64 8" fill="none" stroke="#2DB6D6" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="105" cy="23" r="11" fill="#36BBD8"/>
+  <circle cx="31" cy="110" r="11" fill="#36BBD8"/>
+</svg>

@@ -1,47 +1,54 @@
 ---
 import { CenterTitle, SkillTitle, SkillGrid } from "./UI";
 import {
-    FrontendStack,
-    BackendStack,
-    ProgrammingStack,
-    ToolsStack,
+    CoreStack,
+    AIStack,
+    CloudDevOpsStack,
+    Certifications,
 } from "../utils/SkillStack";
 ---
 
 <section id="skills" class="w-full min-h-screen px-6 py-4 pt-14 bg-background">
     <CenterTitle title="Tech Stack" color="primary" />
 
-    <div
-        class="Fade_Up flex justify-center items-start flex-col lg:flex-row gap-2"
-    >
-        <div
-            class="Fade_Up flex_center flex-col gap-4 py-4 xs:p-4 w-full h-full"
-        >
-            <SkillTitle title="Front-End" color="primary" />
-            <SkillGrid stack={FrontendStack} />
+    <div class="Fade_Up max-w-5xl mx-auto text-center text-[1.05em] py-4">
+        <p>
+            My strongest profile is the intersection of full-stack engineering, AI-assisted applications, and cloud-ready delivery.
+        </p>
+    </div>
+
+    <div class="Fade_Up flex justify-center items-start flex-col gap-8 py-4">
+        <div class="w-full flex_center flex-col gap-4">
+            <SkillTitle title="Core Stack" color="primary" />
+            <SkillGrid stack={CoreStack} />
         </div>
 
-        <div
-            class="Fade_Up flex_center flex-col gap-4 py-4 xs:p-4 w-full h-full"
-        >
-            <SkillTitle title="Back-End" color="primary" />
-            <SkillGrid stack={BackendStack} />
+        <div class="w-full flex_center flex-col gap-4">
+            <SkillTitle title="AI & Data" color="primary" />
+            <SkillGrid stack={AIStack} />
+        </div>
+
+        <div class="w-full flex_center flex-col gap-4">
+            <SkillTitle title="Cloud & DevOps" color="primary" />
+            <SkillGrid stack={CloudDevOpsStack} />
         </div>
     </div>
 
-    <div class="flex justify-center items-start flex-col lg:flex-row gap-2">
-        <div
-            class="Fade_Up flex_center flex-col gap-4 py-4 xs:p-4 w-full h-full"
-        >
-            <SkillTitle title="Programming" color="primary" />
-            <SkillGrid stack={ProgrammingStack} />
-        </div>
-
-        <div
-            class="Fade_Up flex_center flex-col gap-4 py-4 xs:p-4 w-full h-full"
-        >
-            <SkillTitle title="Tech & Tools" color="primary" />
-            <SkillGrid stack={ToolsStack} />
+    <div class="Fade_Up max-w-5xl mx-auto pt-10">
+        <SkillTitle title="Certifications" color="primary" />
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            {Certifications.map((certification) => (
+                <a
+                    href={certification.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="Fade_Stagger min-h-[88px] flex_center text-center px-4 py-3 rounded-lg bg-skillGradient border border-primaryLiteAlt/40 hover:border-secondaryLiteAlt transition-colors"
+                    title={certification.name}
+                >
+                    <span class="font-ubuntu text-[0.95em]">{certification.name}</span>
+                </a>
+            ))}
         </div>
     </div>
 </section>
+
